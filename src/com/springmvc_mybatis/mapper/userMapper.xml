@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springmvc_mybatis.mapper.UserMapper">
+	<resultMap type="User" id="userResult">
+		<result column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="pwd" property="pwd" />
+		<result column="school" property="school" />
+		<result column="role" property="role" />
+		<result column="nickname" property="nickname" />
+	</resultMap>
+	<select id="login" resultMap="userResult">
+		select * from
+		user
+		where
+		name=#{name}
+		and pwd=#{pwd}
+	</select>
+
+	<select id="getAllUsers" resultMap="userResult">
+		select *
+		from user
+	</select>
+	
+	<select id="getSingleUser" resultMap="userResult">
+		select *
+		from user where id=#{id}
+	</select>
+	
+	<update id="chnpwd">
+		update user set pwd=#{pwd} where id=#{id}
+	</update>
+	
+	<insert id="insertUser">
+		insert into user(name,pwd,school,role,nickname) values(#{name},#{pwd},#{school},#{role},#{nickname})
+	</insert>
+	
+	<delete id="deleteUser">
+		delete from user where id = #{id}
+	</delete>
+	
+</mapper>
+<!-- error ,,,,resultMap wrong to resultType... -->
