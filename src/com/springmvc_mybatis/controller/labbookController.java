@@ -1,10 +1,14 @@
 package com.springmvc_mybatis.controller;
 
 import java.util.Date;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,15 +79,15 @@ public class labbookController {
 		}
 	}
 	
-	@RequestMapping(value="/cancelbook",method=RequestMethod.GET)
-	public String cancel(HttpServletRequest request,Model model) {
+	@RequestMapping(value="/{meetingfield}/cancelbook",method=RequestMethod.GET)
+	public String cancel(@PathVariable String meetingfield,HttpServletRequest request,Model model) {
 		if(request.getSession().getAttribute("userid")==null)
 			return "login";
-		int id = Integer.parseInt(request.getParameter("id"));
-		String password = request.getParameter("pwd");
-		usermapper.chnpwd(id, password);
-		request.getSession().removeAttribute("userid");
-		return "login";
-		
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+		String updatetime = df.format(new Date());
+		wmapper.clearWeek(meetingfield, updatetime);
+		return "redirect:/labbook/index.action";
 	}
+
+	
 }
