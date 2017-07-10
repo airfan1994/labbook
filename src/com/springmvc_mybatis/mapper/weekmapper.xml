@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springmvc_mybatis.mapper.weekmapper">
+	<resultMap type="week" id="weekResult">
+		<result column="meetingfield" property="meetingfield" />
+		<result column="fact" property="fact" />
+		<result column="updatetime" property="updatetime" />
+	</resultMap>
+
+
+	<select id="getAllWeek" resultMap="weekResult">
+		select *
+		from week
+	</select>
+	
+	
+	
+	<update id="setWeek">
+		update week set fact=#{fact},updatetime=#{updatetime} where meetingfield=#{meetingfield}
+	</update>
+	
+	<update id="clearWeek">
+		update week set fact='',updatetime=#{updatetime} where meetingfield=#{meetingfield}
+	</update>
+	
+</mapper>
+<!-- error ,,,,resultMap wrong to resultType... -->

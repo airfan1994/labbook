@@ -38,7 +38,7 @@ public class UserController {
 		} else {
 			model.addAttribute("user", user_login);
 			request.getSession().setAttribute("userid", user_login.getId());
-			return "index";
+			return "redirect:/labbook/index.action";
 		}
 	}
 
@@ -95,7 +95,6 @@ public class UserController {
 		if(request.getSession().getAttribute("userid")==null)
 			return "login";
 		User user_login = usermapper.getSingleUser((Integer)request.getSession().getAttribute("userid"));
-		System.out.println(user_login);
 		if (user_login == null) {
 			System.out.println("Error login!");
 			return "login";
