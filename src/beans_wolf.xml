@@ -14,9 +14,9 @@
 	<!-- 1. 数据源 : DriverManagerDataSource -->
 	<bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://127.0.0.1/labbook"/>
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/labbook"/>
 		<property name="username" value="username"/>
-		<property name="password" value="pwd"/>
+		<property name="password" value="password"/>
 	</bean>
 	
 	<!-- 
